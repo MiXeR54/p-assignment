@@ -1,22 +1,24 @@
 import React from "react";
 import { TradeCard } from "./TradeCard";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Paper } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    marginTop: "10px",
+    background: "white",
+    minHeight: "100vh",
+    marginTop: "1px",
   },
 });
 
-export const Trade = () => {
+export const Trade: React.FC = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <Paper className={classes.root}>
       <TradeCard />
       <TradeCard />
       <TradeCard />
       <TradeCard />
-    </div>
+    </Paper>
   );
 };

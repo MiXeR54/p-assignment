@@ -21,20 +21,20 @@ const useStyles = makeStyles({
     color: "green",
   },
   action: {
-    maxWidth: 350,
+    maxWidth: "auto",
   },
   text: {
     textAlign: "center",
   },
 });
 
-export const TradeCard = () => {
+export const TradeCard: React.FC = () => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   return (
     <CardActionArea className={classes.action}>
       <Paper variant="outlined" square className={classes.paper}>
-        <Grid container direction="row" spacing={3}>
+        <Grid container direction="row" spacing={3} justify="center">
           <Grid item>
             <Typography>{bull}</Typography>
           </Grid>

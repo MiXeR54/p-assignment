@@ -7,10 +7,11 @@ import Tab from "@material-ui/core/Tab";
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
+    zIndex: 999,
   },
 });
 
-export const HeaderMenu = () => {
+export const HeaderMenu: React.FC = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 

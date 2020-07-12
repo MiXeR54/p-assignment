@@ -22,7 +22,7 @@ export const NavBar: React.FC = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Paxful
+            CompanyName
           </Typography>
           <Grid container justify="flex-end" direction="row" spacing={2}>
             <Grid item>
