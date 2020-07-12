@@ -21,7 +21,7 @@ export const NavBar: React.FC = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h4" className={classes.title}>
+          <Typography variant="h6" className={classes.title}>
             Paxful
           </Typography>
           <Grid container justify="flex-end" direction="row" spacing={2}>
@@ -38,7 +38,7 @@ export const NavBar: React.FC = () => {
               <Typography variant="h6">Support</Typography>
             </Grid>
             <Grid item>
-              <Typography variant="h6">Your account</Typography>
+              <Typography variant="h6">Your</Typography>
             </Grid>
           </Grid>
         </Toolbar>
