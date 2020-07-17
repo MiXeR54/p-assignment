@@ -3,11 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1,
-    zIndex: 999,
+    display: "flex",
+    justifyContent: "center",
   },
 });
 
@@ -25,10 +26,10 @@ export const HeaderMenu: React.FC = () => {
         onChange={handleChange}
         indicatorColor="primary"
         textColor="primary"
-        centered
+        variant="scrollable"
       >
         <Tab label="Overview" />
-        <Tab label="Trades" />
+        <Tab label="Trades" component={Link} to="/sell/trades" />
         <Tab label="Disputes" />
         <Tab label="Your offers" />
         <Tab label="My team" />

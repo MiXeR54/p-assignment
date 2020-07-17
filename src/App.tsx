@@ -1,27 +1,42 @@
 import React from "react";
-import { NavBar } from "./components/NavBar";
-import { HeaderMenu } from "./components/HeaderMenu";
+import { NavBar } from "./components/Header/NavBar";
+import { HeaderMenu } from "./components/Header/HeaderMenu";
 import { Trade } from "./components/Trades/Trade";
-import { Dialog } from "./components/Dialog/Dialog";
 import { Grid } from "@material-ui/core";
 import { Details } from "./components/Details/Details";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Chat } from "./components/Dialog/Chat";
 
 export const App: React.FC = () => {
   return (
-    <>
+    <BrowserRouter>
       <NavBar />
-      <HeaderMenu />
-      <Grid xs={12} container direction="row">
-        <Grid xs={3} item>
-          <Trade />
-        </Grid>
-        <Grid xs={6} item>
-          <Dialog />
-        </Grid>
-        <Grid xs={3} item>
-          <Details />
-        </Grid>
-      </Grid>
-    </>
+      <Switch>
+        <Route path="/" exact />
+        <Route exact path="/sell" component={HeaderMenu} />
+        <Route exact path="/sell/trades">
+          <HeaderMenu />
+          <Grid container>
+            <Grid xs={12} md={3} item>
+              <Trade />
+            </Grid>
+          </Grid>
+        </Route>
+        <Route exact path="/sell/trades/:trade?">
+          <HeaderMenu />
+          <Grid container>
+            <Grid xs={12} md={3} item>
+              <Trade />
+            </Grid>
+            <Grid xs={12} md={6} item>
+              <Chat />
+            </Grid>
+            <Grid xs={12} md={3} item>
+              <Details />
+            </Grid>
+          </Grid>
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };

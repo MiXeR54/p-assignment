@@ -1,4 +1,12 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunkMiddleware from "redux-thunk";
 
-export const rootReducer = combineReducers({});
-export const store = createStore(rootReducer);
+import { tradeReducer } from "./reducers/tradeReducer";
+
+const rootReducer = combineReducers({
+  trades: tradeReducer,
+});
+
+export type AppState = ReturnType<typeof rootReducer>;
+
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
