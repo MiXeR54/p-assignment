@@ -26,11 +26,6 @@ const initialState: TradesState = {
   trades: [],
   selected: null,
   isSeller: true,
-  tradingInfo: {
-    isLoaded: false,
-    isFetching: false,
-    bpi: null,
-  },
 };
 
 export const tradeReducer = (state = initialState, action: TradeActionTypes) =>

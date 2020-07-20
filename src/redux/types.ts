@@ -26,26 +26,11 @@ export interface Trade {
   };
 }
 
-export interface BPI {
-  USD: {
-    code: string;
-    rate: string;
-    description: string;
-    rate_float: number;
-  };
-}
-
-export interface TraidingInfo {
-  isLoaded: boolean;
-  isFetching: boolean;
-  bpi: BPI | null;
-}
-
 export interface TradesState {
   trades: Trade[];
   selected: number | null;
   isSeller: boolean;
-  tradingInfo: TraidingInfo;
+  // tradingInfo: TraidingInfo;
 }
 
 interface MarkAsReadAction {

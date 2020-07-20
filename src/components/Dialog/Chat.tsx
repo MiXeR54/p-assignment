@@ -111,14 +111,13 @@ export const Chat: React.FC = (props) => {
         <Fragment>
           <div className={classes.heading}>
             <div className={classes.circleIcon}>
-              <IconButton>
-                <DeleteIcon
-                  // className={classes.icon}
-                  onClick={() => {
-                    dispatch(deleteTrade(currentTrade.id));
-                    history.push("/sell/trades");
-                  }}
-                />
+              <IconButton
+                onClick={() => {
+                  dispatch(deleteTrade(currentTrade.id));
+                  history.push("/sell/trades");
+                }}
+              >
+                <DeleteIcon />
               </IconButton>
             </div>
             <div>
