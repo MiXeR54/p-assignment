@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useState } from "react";
+import React, { useEffect, Fragment, useState, useCallback } from "react";
 import {
   InputBase,
   Paper,
@@ -7,13 +7,21 @@ import {
   Typography,
   Divider,
 } from "@material-ui/core";
-import { Message } from "./Message";
-import { useParams, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { selectTrade, sendMessage, deleteTrade } from "../../redux/actions";
-import { selectIsSeller, selectCurrentTrade } from "../../redux/selectors";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SendIcon from "@material-ui/icons/Send";
+import { useParams, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import { Message } from "./Message";
+import {
+  selectTrade,
+  sendMessage,
+  deleteTrade,
+} from "../../redux/actions/actions";
+import {
+  selectIsSeller,
+  selectCurrentTrade,
+} from "../../redux/selectors/selectors";
 
 const useStyles = makeStyles(({ spacing, palette, breakpoints }) => ({
   root: {
@@ -32,7 +40,6 @@ const useStyles = makeStyles(({ spacing, palette, breakpoints }) => ({
   },
   circleIcon: {
     color: "#ffffff",
-    // borderRadius: "50%",
     padding: "8px",
     float: "left",
     marginLeft: 20,
@@ -54,10 +61,6 @@ const useStyles = makeStyles(({ spacing, palette, breakpoints }) => ({
     maxHeight: "60vh",
     minHeight: "60vh",
     overflowX: "auto",
-    [breakpoints.up("md")]: {
-      maxHeight: "60vh",
-      minHeight: "60vh",
-    },
   },
   input: {
     marginLeft: spacing(1),
@@ -71,7 +74,7 @@ const useStyles = makeStyles(({ spacing, palette, breakpoints }) => ({
   },
 }));
 
-export const Chat: React.FC = (props) => {
+export const Chat = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { trade } = useParams();
@@ -86,24 +89,38 @@ export const Chat: React.FC = (props) => {
     }
   }, [trade, dispatch]);
 
-  const changeMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
-  };
+  const changeMessage = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setMessage(event.target.value);
+    },
+    []
+  );
 
-  const newMessage = (event: React.FormEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    if (message.length > 0) {
-      const timeStamp = new Date();
-      dispatch(
-        sendMessage({
-          income: !isSeller,
-          text: message,
-          time: `${timeStamp.getHours()} : ${timeStamp.getMinutes()} : ${timeStamp.getSeconds()}`,
-        })
-      );
-      setMessage("");
+  const newMessage = useCallback(
+    (event: React.FormEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      if (message.length > 0) {
+        const timeStamp = new Date();
+
+        dispatch(
+          sendMessage({
+            income: !isSeller,
+            text: message,
+            time: `${timeStamp.getHours()} : ${timeStamp.getMinutes()} : ${timeStamp.getSeconds()}`,
+          })
+        );
+        setMessage("");
+      }
+    },
+    [dispatch, isSeller, message]
+  );
+
+  const removeTrade = useCallback(() => {
+    if (currentTrade !== undefined) {
+      dispatch(deleteTrade(currentTrade.id));
+      history.push("/sell/trades");
     }
-  };
+  }, [dispatch, history, currentTrade]);
 
   return (
     <div className={classes.root}>
@@ -111,12 +128,7 @@ export const Chat: React.FC = (props) => {
         <Fragment>
           <div className={classes.heading}>
             <div className={classes.circleIcon}>
-              <IconButton
-                onClick={() => {
-                  dispatch(deleteTrade(currentTrade.id));
-                  history.push("/sell/trades");
-                }}
-              >
+              <IconButton onClick={removeTrade}>
                 <DeleteIcon />
               </IconButton>
             </div>

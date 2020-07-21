@@ -1,13 +1,12 @@
+import { TradesState, TradeActionTypes } from "../../types/types";
 import {
-  TradesState,
-  TradeActionTypes,
   SELECT_TRADE,
   FETCH_TRADES,
   SEND_MESSAGE,
   DELETE_TRADE,
   SWITCH_USER,
   MARK_AS_READ,
-} from "../types";
+} from "../actions/actionTypes";
 import produce from "immer";
 
 const getIdx = (

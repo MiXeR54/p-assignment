@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { IconButton, Menu, makeStyles, MenuItem } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
@@ -15,14 +15,18 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
   },
 }));
+
 export const CollapsedNavbar = () => {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = !!anchorEl;
 
-  const handleToggle = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
+  const handleToggle = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(anchorEl ? null : event.currentTarget);
+    },
+    [anchorEl]
+  );
 
   return (
     <div className={classes.buttonCollapse}>

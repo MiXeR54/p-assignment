@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
@@ -14,16 +14,19 @@ const useStyles = makeStyles({
 
 export const HeaderMenu: React.FC = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [currentTab, setCurrentTab] = useState(0);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
-  };
+  const tabSwitcher = useCallback(
+    (event: React.ChangeEvent<{}>, nextTab: number) => {
+      setCurrentTab(nextTab);
+    },
+    []
+  );
   return (
     <Paper className={classes.root}>
       <Tabs
-        value={value}
-        onChange={handleChange}
+        value={currentTab}
+        onChange={tabSwitcher}
         indicatorColor="primary"
         textColor="primary"
         variant="scrollable"

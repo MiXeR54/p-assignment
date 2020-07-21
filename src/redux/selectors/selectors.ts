@@ -1,4 +1,4 @@
-import { AppState } from "./store";
+import { AppState } from "../store";
 
 export const allTrades = (state: AppState) => state.trades.trades;
 export const selectedTrade = (state: AppState) => state.trades.selected;

@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { Grid, CardActionArea, Paper, Avatar } from "@material-ui/core";
-import { Trade } from "../../redux/types";
+import { Trade } from "../../types/types";
 import { useSelector, useDispatch } from "react-redux";
-import { selectIsSeller } from "../../redux/selectors";
-import { markAsRead } from "../../redux/actions";
+import { selectIsSeller } from "../../redux/selectors/selectors";
+import { markAsRead } from "../../redux/actions/actions";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     width: 64,
     height: 64,
   },
-  Greenbullet: {
+  greenBullet: {
     display: "inline-block",
     margin: "2px 10px 2px 2px",
     transform: "scale(3)",
@@ -28,13 +28,10 @@ const useStyles = makeStyles((theme) => ({
     transform: "scale(3)",
     color: "gray",
   },
-  // action: {
-  //   // maxWidth: "auto",
-  // },
   text: {
     textAlign: "center",
   },
-  SuccesText: {
+  succesText: {
     textAlign: "center",
     color: "green",
   },
@@ -50,32 +47,31 @@ interface TraidingCardProps extends React.HTMLAttributes<HTMLDivElement> {
   tradeInfo: Trade;
 }
 
-export const TradeCard: React.FC<TraidingCardProps> = ({
-  tradeInfo,
-  selected,
-}) => {
+export const TradeCard: React.FC<TraidingCardProps> = ({ tradeInfo }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isSeller = useSelector(selectIsSeller);
   const history = useHistory();
-  const Greenbull = <span className={classes.Greenbullet}>•</span>;
-  const bull = <span className={classes.bullet}>•</span>;
+
+  const clickHandler = useCallback(() => {
+    history.push(`/sell/trades/${tradeInfo.id}`);
+    dispatch(markAsRead(tradeInfo.id));
+  }, [dispatch, history, tradeInfo]);
+
   return (
-    <CardActionArea
-      // className={classes.action}
-      onClick={() => {
-        history.push(`/sell/trades/${tradeInfo.id}`);
-        dispatch(markAsRead(tradeInfo.id));
-      }}
-    >
+    <CardActionArea onClick={clickHandler}>
       <Paper variant="outlined" square className={classes.paper}>
         <Grid container direction="row" spacing={3} justify="center">
           <Grid item className={classes.info}>
             {(isSeller && tradeInfo.chat.gotUnreads.seller) ||
             (!isSeller && tradeInfo.chat.gotUnreads.buyer) ? (
-              <Typography>{Greenbull}</Typography>
+              <Typography>
+                <span className={classes.greenBullet}>•</span>
+              </Typography>
             ) : (
-              <Typography>{bull}</Typography>
+              <Typography>
+                <span className={classes.bullet}>•</span>
+              </Typography>
             )}
           </Grid>
           <Grid item className={classes.info}>
@@ -95,7 +91,7 @@ export const TradeCard: React.FC<TraidingCardProps> = ({
             <Avatar className={classes.image}>R</Avatar>
 
             {tradeInfo.isPaid ? (
-              <Typography className={classes.SuccesText} color="primary">
+              <Typography className={classes.succesText} color="primary">
                 PAID
               </Typography>
             ) : (

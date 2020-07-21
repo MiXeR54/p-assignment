@@ -1,10 +1,10 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
-import { AppState } from "./store";
-import { Trades } from "./data";
-import { fetchTrades } from "./actions";
+import { AppState } from "../store";
+import { Trades } from "../../mocks/data";
+import { fetchTrades } from "../actions/actions";
 
-export const thunkGetTrades = (): ThunkAction<
+export const GetTrades = (): ThunkAction<
   void,
   AppState,
   null,

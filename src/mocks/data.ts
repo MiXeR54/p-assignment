@@ -1,4 +1,4 @@
-import { Trade } from "./types";
+import { Trade } from "../types/types";
 
 export const Trades: Trade[] = [
   {

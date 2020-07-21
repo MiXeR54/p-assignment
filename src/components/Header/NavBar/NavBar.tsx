@@ -9,37 +9,39 @@ import {
 import { NavLink } from "react-router-dom";
 import { CollapsedNavbar } from "./CollapsedNavbar";
 
-export const NavBar: React.FC = () => {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    title: {
-      flexGrow: 1,
-    },
-    link: {
-      color: "white",
-      textDecoration: "none",
-      "&:hover": {
-        textDecoration: "underline",
-      },
-    },
-    active: {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  title: {
+    flexGrow: 1,
+  },
+  link: {
+    color: "white",
+    textDecoration: "none",
+    "&:hover": {
       textDecoration: "underline",
     },
-    buttonBar: {
-      [theme.breakpoints.down("xs")]: {
-        display: "none",
-      },
-      margin: "10px",
-      paddingLeft: "16px",
-      right: 0,
-      position: "relative",
-      width: "100%",
-      background: "transparent",
+  },
+  active: {
+    textDecoration: "underline",
+  },
+  buttonBar: {
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
     },
-  }));
+    margin: "10px",
+    paddingLeft: "16px",
+    right: 0,
+    position: "relative",
+    width: "100%",
+    background: "transparent",
+  },
+}));
+
+export const NavBar: React.FC = () => {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <AppBar position="static">

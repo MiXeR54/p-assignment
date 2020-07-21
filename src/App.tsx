@@ -1,6 +1,6 @@
 import React from "react";
-import { NavBar } from "./components/Header/NavBar";
-import { HeaderMenu } from "./components/Header/HeaderMenu";
+import { NavBar } from "./components/Header/NavBar/NavBar";
+import { HeaderMenu } from "./components/Header/HeaderMenu/HeaderMenu";
 import { Trade } from "./components/Trades/Trade";
 import { Grid } from "@material-ui/core";
 import { Details } from "./components/Details/Details";

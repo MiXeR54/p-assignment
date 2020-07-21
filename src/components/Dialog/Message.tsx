@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles, Typography, Avatar } from "@material-ui/core";
-import { Message as MessageType } from "../../redux/types";
+
+import { Message as MessageType } from "../../types/types";
 
 const useStyles = makeStyles(({ palette }) => ({
   root: {
@@ -35,6 +36,7 @@ const useStyles = makeStyles(({ palette }) => ({
 
 export const Message: React.FC<MessageType> = ({ text, income, time }) => {
   const classes = useStyles();
+
   return (
     <div className={`${classes.root} ${income && classes.income}`}>
       <div>
