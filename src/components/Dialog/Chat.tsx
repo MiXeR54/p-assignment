@@ -106,7 +106,7 @@ export const Chat = () => {
           sendMessage({
             income: !isSeller,
             text: message,
-            time: `${timeStamp.getHours()} : ${timeStamp.getMinutes()} : ${timeStamp.getSeconds()}`,
+            time: `${timeStamp}`,
           })
         );
         setMessage("");
