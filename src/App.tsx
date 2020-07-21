@@ -1,10 +1,11 @@
 import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Grid } from "@material-ui/core";
+
 import { NavBar } from "./components/Header/NavBar/NavBar";
 import { HeaderMenu } from "./components/Header/HeaderMenu/HeaderMenu";
 import { Trade } from "./components/Trades/Trade";
-import { Grid } from "@material-ui/core";
 import { Details } from "./components/Details/Details";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Chat } from "./components/Dialog/Chat";
 
 export const App: React.FC = () => {

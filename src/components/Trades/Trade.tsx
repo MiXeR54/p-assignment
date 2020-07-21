@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { TradeCard } from "./TradeCard";
 import { makeStyles, Paper } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
+
+import { TradeCard } from "./TradeCard";
 import { allTrades, selectedTrade } from "../../redux/selectors/selectors";
 import { GetTrades } from "../../redux/middleware/thunks";
 

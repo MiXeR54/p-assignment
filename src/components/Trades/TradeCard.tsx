@@ -1,10 +1,11 @@
 import React, { useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { Grid, CardActionArea, Paper, Avatar } from "@material-ui/core";
+
 import { Trade } from "../../types/types";
-import { useSelector, useDispatch } from "react-redux";
 import { selectIsSeller } from "../../redux/selectors/selectors";
 import { markAsRead } from "../../redux/actions/actions";
 

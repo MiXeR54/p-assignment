@@ -1,5 +1,6 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
+
 import { AppState } from "../store";
 import { Trades } from "../../mocks/data";
 import { fetchTrades } from "../actions/actions";

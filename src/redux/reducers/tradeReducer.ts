@@ -1,3 +1,5 @@
+import produce from "immer";
+
 import { TradesState, TradeActionTypes } from "../../types/types";
 import {
   SELECT_TRADE,
@@ -7,7 +9,6 @@ import {
   SWITCH_USER,
   MARK_AS_READ,
 } from "../actions/actionTypes";
-import produce from "immer";
 
 const getIdx = (
   key: string,

@@ -7,6 +7,7 @@ import {
   Grid,
 } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
+
 import { CollapsedNavbar } from "./CollapsedNavbar";
 
 const useStyles = makeStyles((theme) => ({
