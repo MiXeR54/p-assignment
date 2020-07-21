@@ -8,6 +8,7 @@ import {
   DELETE_TRADE,
   SWITCH_USER,
   MARK_AS_READ,
+  FETCH_TRADING_INFO,
 } from "../actions/actionTypes";
 
 const getIdx = (
@@ -26,6 +27,11 @@ const initialState: TradesState = {
   trades: [],
   selected: null,
   isSeller: true,
+  tradingInfo: {
+    isLoaded: false,
+    isFetching: false,
+    bpi: null,
+  },
 };
 
 export const tradeReducer = (state = initialState, action: TradeActionTypes) =>
@@ -60,6 +66,9 @@ export const tradeReducer = (state = initialState, action: TradeActionTypes) =>
         draft.isSeller
           ? (draft.trades[tradeIdx].chat.gotUnreads.seller = false)
           : (draft.trades[tradeIdx].chat.gotUnreads.buyer = false);
+        break;
+      case FETCH_TRADING_INFO:
+        draft.tradingInfo.bpi = action.payload;
         break;
       default:
         return draft;

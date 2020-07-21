@@ -1,5 +1,6 @@
 import { AppState } from "../store";
 
+export const FetchInfo = (state: AppState) => state.trades.tradingInfo;
 export const allTrades = (state: AppState) => state.trades.trades;
 export const selectedTrade = (state: AppState) => state.trades.selected;
 export const selectIsSeller = (state: AppState) => state.trades.isSeller;

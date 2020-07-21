@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Paper,
   makeStyles,
@@ -10,6 +10,9 @@ import {
 
 import { AccountSwitcher } from "./AccounSwitcher";
 import { Header } from "./Header";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchUSD } from "../../redux/middleware/thunks";
+import { FetchInfo } from "../../redux/selectors/selectors";
 
 const useStyles = makeStyles({
   root: {
@@ -23,35 +26,35 @@ const useStyles = makeStyles({
   },
 });
 
-const initialState = {
-  code: "USD",
-  description: "United States Dollar",
-  rate: "0",
-  rate_float: 0,
-};
-
 export const Details = () => {
   const classes = useStyles();
-  const [USD, setUSD] = useState(initialState);
+  const dispatch = useDispatch();
+  const tradingInfo = useSelector(FetchInfo);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      fetch("https://api.coindesk.com/v1/bpi/currentprice/USD.json")
-        .then((response) => response.json())
-        .then((data) => setUSD({ ...data.bpi.USD }));
+    setInterval(() => {
+      dispatch(FetchUSD());
     }, Math.floor(Math.random() * 60));
-    return () => clearTimeout(timer);
-  }, [USD]);
+  }, [dispatch]);
 
   return (
     <Paper className={classes.root}>
       <Header />
       <Table className={classes.table}>
         <TableBody>
-          <TableRow>
-            <TableCell align="center">{USD.code}</TableCell>
-            <TableCell align="center">{USD.rate_float}</TableCell>
-          </TableRow>
+          {tradingInfo.bpi != null ? (
+            <TableRow>
+              <TableCell align="center">{tradingInfo.bpi.USD.code}</TableCell>
+              <TableCell align="center">
+                {tradingInfo.bpi.USD.rate_float}
+              </TableCell>
+            </TableRow>
+          ) : (
+            <TableRow>
+              <TableCell align="center">USD</TableCell>
+              <TableCell align="center">0</TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
       <AccountSwitcher />

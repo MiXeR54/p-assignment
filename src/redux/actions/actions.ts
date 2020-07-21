@@ -1,4 +1,4 @@
-import { Trade, Message } from "../../types/types";
+import { Trade, Message, TraidingInfo } from "../../types/types";
 import {
   SELECT_TRADE,
   FETCH_TRADES,
@@ -6,6 +6,7 @@ import {
   DELETE_TRADE,
   SWITCH_USER,
   MARK_AS_READ,
+  FETCH_TRADING_INFO,
 } from "./actionTypes";
 
 export const selectTrade = (tradeID: number | null) => ({
@@ -37,3 +38,10 @@ export const markAsRead = (tradeID: number) => ({
   type: MARK_AS_READ,
   payload: tradeID,
 });
+
+export function fetchTradingInfoAction(tradingInfo: TraidingInfo) {
+  return {
+    type: FETCH_TRADING_INFO,
+    payload: tradingInfo,
+  };
+}

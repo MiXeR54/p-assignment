@@ -5,7 +5,23 @@ import {
   DELETE_TRADE,
   SWITCH_USER,
   MARK_AS_READ,
+  FETCH_TRADING_INFO,
 } from "../redux/actions/actionTypes";
+
+export interface BPI {
+  USD: {
+    code: string;
+    rate: string;
+    description: string;
+    rate_float: number;
+  };
+}
+
+export interface TraidingInfo {
+  isLoaded: boolean;
+  isFetching: boolean;
+  bpi: BPI | null;
+}
 
 export interface Message {
   income: boolean;
@@ -32,6 +48,7 @@ export interface TradesState {
   trades: Trade[];
   selected: number | null;
   isSeller: boolean;
+  tradingInfo: TraidingInfo;
 }
 
 interface MarkAsReadAction {
@@ -64,10 +81,16 @@ interface SwitchUserAction {
   payload: boolean;
 }
 
+interface FetchTradingInfoAction {
+  type: typeof FETCH_TRADING_INFO;
+  payload: BPI;
+}
+
 export type TradeActionTypes =
   | SelectTradeAction
   | FetchTradesAction
   | PostMessageAction
   | DeleteTradeAction
   | SwitchUserAction
-  | MarkAsReadAction;
+  | MarkAsReadAction
+  | FetchTradingInfoAction;
