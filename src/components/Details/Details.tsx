@@ -11,7 +11,7 @@ import {
 import { AccountSwitcher } from "./AccounSwitcher";
 import { Header } from "./Header";
 import { useDispatch, useSelector } from "react-redux";
-import { FetchUSD } from "../../redux/middleware/thunks";
+import { fetchUSD } from "../../redux/middleware/thunks";
 import { FetchInfo } from "../../redux/selectors/selectors";
 import { random } from "../../helpers/random";
 
@@ -33,7 +33,7 @@ export const Details = () => {
   const tradingInfo = useSelector(FetchInfo);
 
   const FetchData = useCallback(() => {
-    dispatch(FetchUSD());
+    dispatch(fetchUSD());
     setTimeout(FetchData, random(6000));
   }, [dispatch]);
 

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { TradeCard } from "./TradeCard";
 import { allTrades, selectedTrade } from "../../redux/selectors/selectors";
-import { GetTrades } from "../../redux/middleware/thunks";
+import { getTrades } from "../../redux/middleware/thunks";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +29,7 @@ export const Trade: React.FC = () => {
   const currentTradeId = useSelector(selectedTrade);
 
   useEffect(() => {
-    dispatch(GetTrades());
+    dispatch(getTrades());
   }, [dispatch]);
 
   return (

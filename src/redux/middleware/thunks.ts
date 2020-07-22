@@ -5,7 +5,7 @@ import { AppState } from "../store";
 import { Trades } from "../../mocks/data";
 import { fetchTrades, fetchTradingInfoAction } from "../actions/actions";
 
-export const GetTrades = (): ThunkAction<
+export const getTrades = (): ThunkAction<
   void,
   AppState,
   null,
@@ -15,7 +15,7 @@ export const GetTrades = (): ThunkAction<
   dispatch(fetchTrades(trades));
 };
 
-export const FetchUSD = (): ThunkAction<
+export const fetchUSD = (): ThunkAction<
   void,
   AppState,
   null,
