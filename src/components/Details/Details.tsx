@@ -12,7 +12,7 @@ import { AccountSwitcher } from "./AccounSwitcher";
 import { Header } from "./Header";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUSD } from "../../redux/middleware/thunks";
-import { FetchInfo } from "../../redux/selectors/selectors";
+import { fetchInfo } from "../../redux/selectors/selectors";
 import { random } from "../../helpers/random";
 
 const useStyles = makeStyles({
@@ -30,16 +30,16 @@ const useStyles = makeStyles({
 export const Details = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const tradingInfo = useSelector(FetchInfo);
+  const tradingInfo = useSelector(fetchInfo);
 
-  const FetchData = useCallback(() => {
+  const fetchData = useCallback(() => {
     dispatch(fetchUSD());
-    setTimeout(FetchData, random(6000));
+    setTimeout(fetchData, random(6000));
   }, [dispatch]);
 
   useEffect(() => {
-    FetchData();
-  }, [FetchData]);
+    fetchData();
+  }, [fetchData]);
 
   return (
     <Paper className={classes.root}>
