@@ -26,7 +26,7 @@ export interface TraidingInfo {
 export interface Message {
   income: boolean;
   text: string;
-  time: string;
+  time: Date;
 }
 
 export interface Trade {

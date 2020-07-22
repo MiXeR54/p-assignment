@@ -43,7 +43,7 @@ export const Message: React.FC<MessageType> = ({ text, income, time }) => {
         <div className={classes.message}>
           <Typography>{text}</Typography>
         </div>
-        <span className={classes.timeStamp}>{time}</span>
+        <span className={classes.timeStamp}>{time.toString()}</span>
       </div>
       <Avatar className={classes.avatar} />
     </div>

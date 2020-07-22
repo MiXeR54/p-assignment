@@ -10,18 +10,7 @@ import {
   MARK_AS_READ,
   FETCH_TRADING_INFO,
 } from "../actions/actionTypes";
-
-const getIdx = (
-  key: string,
-  value: number | null,
-  array: Array<any>
-): number | undefined => {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i][key] === value) {
-      return i;
-    }
-  }
-};
+import { getIdx } from "../../helpers/getIdx";
 
 const initialState: TradesState = {
   trades: [],

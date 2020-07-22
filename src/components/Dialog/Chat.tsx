@@ -106,7 +106,7 @@ export const Chat = () => {
           sendMessage({
             income: !isSeller,
             text: message,
-            time: `${timeStamp}`,
+            time: timeStamp,
           })
         );
         setMessage("");
@@ -143,9 +143,9 @@ export const Chat = () => {
             <Divider className={classes.divider} variant="middle" />
           </div>
           <div className={classes.chat}>
-            {currentTrade.chat.messages.map((message) => (
+            {currentTrade.chat.messages.map((message, id) => (
               <Message
-                key={message.time}
+                key={id}
                 text={message.text}
                 income={message.income}
                 time={message.time}

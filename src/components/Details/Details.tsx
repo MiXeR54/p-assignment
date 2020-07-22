@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import {
   Paper,
   makeStyles,
@@ -13,6 +13,7 @@ import { Header } from "./Header";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchUSD } from "../../redux/middleware/thunks";
 import { FetchInfo } from "../../redux/selectors/selectors";
+import { random } from "../../helpers/random";
 
 const useStyles = makeStyles({
   root: {
@@ -31,11 +32,14 @@ export const Details = () => {
   const dispatch = useDispatch();
   const tradingInfo = useSelector(FetchInfo);
 
-  useEffect(() => {
-    setInterval(() => {
-      dispatch(FetchUSD());
-    }, Math.floor(Math.random() * 60));
+  const FetchData = useCallback(() => {
+    dispatch(FetchUSD());
+    setTimeout(FetchData, random(6000));
   }, [dispatch]);
+
+  useEffect(() => {
+    FetchData();
+  }, [FetchData]);
 
   return (
     <Paper className={classes.root}>

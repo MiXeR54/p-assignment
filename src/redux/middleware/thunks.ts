@@ -24,7 +24,9 @@ export const FetchUSD = (): ThunkAction<
   fetch("https://api.coindesk.com/v1/bpi/currentprice/USD.json")
     .then((response) => response.json())
     .then((data) => {
-      dispatch(fetchTradingInfoAction(data.bpi));
+      setTimeout(() => {
+        dispatch(fetchTradingInfoAction(data.bpi));
+      }, 1000);
     });
 };
 
